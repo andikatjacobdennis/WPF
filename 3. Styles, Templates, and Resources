@@ -240,13 +240,3 @@ In this example, the styles defined in `ButtonStyles.xaml` are merged into the m
     ```
 
 In this example, the application starts with a light theme. A button click allows the user to switch between the light and dark themes dynamically by changing the merged resource dictionary.
-
-### Summary
-
-- **Styles** enable consistent look and feel across your application.
-- **Control Templates** and **Data Templates** allow complete customization of controls and data representation.
-- **Static and Dynamic Resources** manage reusable objects, with dynamic resources allowing runtime changes.
-- **Merged Dictionaries** help organize resources across multiple files.
-- **Theme Management** allows you to create and switch between different visual themes for your application. 
-
-These concepts together form the foundation of a flexible and maintainable WPF application.
