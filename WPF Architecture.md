@@ -98,7 +98,6 @@ package "Core Operating System Elements" {
 
 ' Define relationships with clear labels using straight lines
 PF -down-> PC : Utilizes
-PC -down-> WB : Manages
 "WPF Managed Layer" -down-> "WPF Unmanaged Layer" : Interfaces with
 MC -down-> D3D : Interfaces with
 WB -down-> CLR : Delivers Rendering Instructions to
