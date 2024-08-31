@@ -1,5 +1,3 @@
-Here's a corrected version of the article:
-
 ### WPF Managed Layer
 
 1. **PresentationFramework**
