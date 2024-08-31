@@ -65,13 +65,3 @@ The core operating system layer includes:
    - Executes graphics operations leveraging the GPU's parallel processing capabilities[3]
 
 The managed layer interacts with the unmanaged layer, where MilCore and WindowsCodecs work with Direct3D for rendering and image processing[2][3]. The CLR utilizes User32 for UI management and event handling, while User32 uses GDI for certain 2D graphics operations[3]. Direct3D interfaces with Device Drivers for hardware resource management which communicates with the Graphics Card for rendering and GPU processing[3].
-
-Citations:
-[1] https://www.tutorialspoint.com/wpf/wpf_overview.htm
-[2] https://learn.microsoft.com/en-us/dotnet/desktop/wpf/advanced/wpf-architecture?view=netframeworkdesktop-4.8
-[3] https://www.c-sharpcorner.com/article/wpf-architecture/
-[4] https://www.c-sharpcorner.com/UploadFile/819f33/overview-of-windows-presentation-foundation-wpf-architectu/
-[5] https://pdsa.com/Resources-BlogPosts/20-WPF-Architecture.pdf
-[6] https://r4r.co.in/wpf/01/tutorial/basics/introduction_to_wpf.shtml
-[7] https://learn.microsoft.com/en-us/dotnet/desktop/wpf/overview/?view=netdesktop-8.0
-[8] https://en.wikipedia.org/wiki/Windows_Presentation_Foundation
