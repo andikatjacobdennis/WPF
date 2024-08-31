@@ -1,3 +1,5 @@
+![wpf_architecture](wpf_architecture.png)
+
 ### WPF Managed Layer
 
 1. **PresentationFramework**
@@ -58,8 +60,6 @@
 - **WindowBase** delivers rendering instructions to the **CLR**, which utilizes **User32** for UI management and event handling.
 - **User32** employs **GDI** for certain 2D graphics operations, while WPF predominantly relies on DirectX for high-performance graphics.
 - **Direct3D** interfaces with **Device Drivers** for hardware resource management, while **Device Drivers** communicate with the **Graphics Card** for rendering and GPU processing.
-
-![Alt text](wpf_architecture.png)
 
 ```puml
 
