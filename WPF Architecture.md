@@ -62,6 +62,8 @@
 ```puml
 
 @startuml
+skinparam linetype ortho
+
 package "WPF Managed Layer" {
     class PresentationFramework {
         + Controls
@@ -125,8 +127,6 @@ package "Core Operating System Elements" {
 }
 
 PresentationFramework --> PresentationCore : Utilizes
-PresentationFramework --> WindowBase : Utilizes  
-PresentationCore --> WindowBase : Utilizes
 "WPF Managed Layer" --> "WPF Unmanaged Layer" : Interfaces with
 "WPF Unmanaged Layer" --> Direct3D : Interfaces with
 WindowBase --> CLR : Delivers Rendering Instructions to
@@ -136,5 +136,4 @@ GDI --> DeviceDrivers : Interfaces with
 Direct3D --> DeviceDrivers : Interfaces with 
 DeviceDrivers --> GraphicsCard : Communicates with
 @enduml
-
 ```
