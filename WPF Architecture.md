@@ -1,63 +1,77 @@
-### WPF Managed Layer
+## WPF Architecture Overview
+
+The Windows Presentation Foundation (WPF) architecture consists of three main layers:
+
+1. **Managed Layer**
+2. **Unmanaged Layer** 
+3. **Core Operating System Layer**
+
+### Managed Layer
+
+The managed layer is written in managed code and includes the following major components:
 
 1. **PresentationFramework**
-   - **Controls**: Implements the core UI elements such as `Button`, `TextBox`, `ComboBox`, and `ListBox`. These controls are derived from `FrameworkElement` and provide rich functionality for building interactive user interfaces.
-   - **Data Binding**: Provides robust support for binding UI elements to data sources using the `Binding` class. It supports various binding modes (`OneWay`, `TwoWay`, `OneTime`) and includes features for data validation, conversion, and updating.
-   - **Styles**: Defines the appearance of UI elements through the `Style` class, which allows for consistent styling across an application. Styles can include property setters, triggers for dynamic property changes, and control templates to define complex visual structures.
-   - **Animation**: Implements animations through classes such as `Storyboard` and `Animation`. Animations are defined declaratively in XAML and enable smooth transitions and interactive effects for UI elements.
+   - Implements core UI elements like `Button`, `TextBox`, `ComboBox` with built-in support for data binding, styling and templating[1][2]
+   - Provides robust data binding through the `Binding` class with support for various binding modes, data validation, conversion and updating[2]
+   - Defines UI element appearance through `Style` for consistent styling across the application[2]
+   - Implements animations declaratively in XAML using classes like `Storyboard` and `Animation`[2]
 
-2. **PresentationCore**
-   - **Visual System**: Manages visual elements and their rendering in WPF. It includes the `Visual` and `UIElement` classes, which handle rendering, layout, and event routing within the WPF visual tree.
-   - **Rendering Instructions**: Handles the creation and management of rendering commands through the `DrawingContext` class, which issues drawing operations to the graphics system.
+2. **PresentationCore** 
+   - Manages visual elements and rendering through the `Visual` and `UIElement` classes[2]
+   - Handles creation and management of rendering commands via `DrawingContext` for drawing shapes, text and images[2]
 
 3. **WindowBase**
-   - **Window Management**: Provides the functionality to create, manage, and interact with windows. This includes handling window lifecycle events (e.g., opening, closing) and managing window state (e.g., maximized, minimized).
-   - **User Interaction**: Manages user input events such as mouse clicks, keyboard input, and touch gestures. It routes these events to the appropriate visual elements within the window.
+   - Provides window management functionality for creating, interacting with and managing window state[2]
+   - Manages user input events like mouse, keyboard and touch and routes them to visual elements[2]
 
-### WPF Unmanaged Layer
+### Unmanaged Layer
 
-1. **MilCore**
-   - **Low-Level Rendering**: Handles the low-level rendering operations and manages the interaction with DirectX for drawing graphics. This includes submitting rendering commands and handling graphics resources.
-   - **DirectX Integration**: Integrates with DirectX to leverage GPU acceleration for rendering tasks, including 3D graphics processing and advanced visual effects.
+The unmanaged layer contains the following components:
+
+1. **MilCore (Media Integration Layer)**
+   - Handles low-level rendering operations and manages interaction with DirectX for drawing graphics[1][3]
+   - Integrates with DirectX to leverage GPU acceleration for rendering tasks and advanced visual effects[3]
 
 2. **WindowsCodecs**
-   - **Image Decoding**: Utilizes the Windows Imaging Component (WIC) to decode various image formats (e.g., PNG, JPEG) into a format that WPF can render.
-   - **DirectX Integration**: Works with DirectX for processing images and rendering them efficiently, including managing image resources within Direct3D surfaces.
+   - Utilizes the Windows Imaging Component (WIC) to decode various image formats into a format WPF can render[3]
+   - Works with DirectX for efficient image processing and rendering[3]
 
-### Core Operating System Elements
+### Core Operating System Layer
 
-1. **User32**
-   - **User Interface Management**: Provides the APIs for managing windows, user input, and other UI-related tasks at the OS level. It handles low-level window creation and interaction with the Windows graphical subsystem.
-   - **Event Handling**: Processes and dispatches input events (e.g., mouse clicks, keyboard strokes) to the appropriate application windows and controls.
+The core operating system layer includes:
 
-2. **GDI**
-   - **Graphics Device Interface**: Provides a set of APIs for drawing 2D graphics and handling device contexts. GDI is used for rendering operations that involve 2D graphics.
-   - **2D Graphics Rendering**: Handles basic 2D drawing operations, including rendering text, shapes, and images. While WPF primarily uses DirectX for rendering, GDI can be used for certain legacy or compatibility scenarios.
+1. **User32** 
+   - Provides APIs for managing windows, user input and UI-related tasks at the OS level[3]
+   - Processes and dispatches input events to application windows and controls[3]
+
+2. **GDI (Graphics Device Interface)**
+   - Provides APIs for 2D graphics drawing and device contexts[3]
+   - Used for rendering operations involving 2D graphics like drawing text, shapes and images[3]
 
 3. **CLR (Common Language Runtime)**
-   - **Memory Management**: Manages memory allocation, garbage collection, and object lifetime for .NET applications. It ensures efficient memory usage and automatic cleanup of unused objects.
-   - **Execution Environment**: Provides the runtime environment for executing .NET code, including Just-In-Time (JIT) compilation, exception handling, and type safety.
+   - Manages memory allocation, garbage collection and object lifetime for .NET applications[3]
+   - Provides the runtime environment for executing .NET code including JIT compilation, exception handling and type safety[3]
 
 4. **Direct3D**
-   - **3D Graphics Rendering**: Provides APIs for rendering 3D graphics with the GPU, including managing 3D objects, shaders, and render pipelines. It is essential for advanced graphics rendering and performance in WPF.
-   - **Hardware Acceleration**: Utilizes the GPU to accelerate rendering tasks, providing high-performance graphics processing for complex scenes and effects.
+   - Provides APIs for rendering 3D graphics with the GPU[3]
+   - Utilizes the GPU to accelerate rendering tasks for high-performance graphics processing[3]
 
-5. **DeviceDrivers**
-   - **Hardware Communication**: Manages communication between the operating system and hardware devices, such as graphics cards and input devices.
-   - **Device Management**: Handles the management of device resources and operations, ensuring proper interaction between the OS and hardware.
+5. **Device Drivers**
+   - Manages communication between the OS and hardware devices like graphics cards[3]
+   - Handles device initialization, resource allocation and device-specific functionality[3]
 
-6. **GraphicsCard**
-   - **Rendering Hardware**: Provides the physical hardware necessary for rendering graphics, including GPUs (Graphics Processing Units) that perform rendering and computation tasks.
-   - **GPU Processing**: Executes graphics operations, including rendering, shading, and post-processing, leveraging the GPU's parallel processing capabilities for high performance.
+6. **Graphics Card**
+   - Provides the physical hardware for rendering graphics including GPUs[3]
+   - Executes graphics operations leveraging the GPU's parallel processing capabilities[3]
 
-### Interactions
+The managed layer interacts with the unmanaged layer, where MilCore and WindowsCodecs work with Direct3D for rendering and image processing[2][3]. The CLR utilizes User32 for UI management and event handling, while User32 uses GDI for certain 2D graphics operations[3]. Direct3D interfaces with Device Drivers for hardware resource management which communicates with the Graphics Card for rendering and GPU processing[3].
 
-- **PresentationFramework** utilizes **PresentationCore** for visual representation and layout, and **WindowBase** for window management and user interaction.
-- **PresentationCore** also relies on **WindowBase** for rendering instructions.
-- The WPF Managed Layer interacts with the WPF Unmanaged Layer, where **MilCore** and **WindowsCodecs** work with **Direct3D** for rendering and image processing tasks.
-- **WindowBase** delivers rendering instructions to the **CLR**, which in turn utilizes **User32** for UI management and event handling.
-- **User32** uses **GDI** for certain 2D graphics operations, though WPF predominantly relies on DirectX.
-- **Direct3D** interfaces with **DeviceDrivers** for hardware resource management.
-- **DeviceDrivers** communicates with **GraphicsCard** for rendering and GPU processing.
-
-This refined explanation accurately reflects the architecture and interactions of the WPF system components.
+Citations:
+[1] https://www.tutorialspoint.com/wpf/wpf_overview.htm
+[2] https://learn.microsoft.com/en-us/dotnet/desktop/wpf/advanced/wpf-architecture?view=netframeworkdesktop-4.8
+[3] https://www.c-sharpcorner.com/article/wpf-architecture/
+[4] https://www.c-sharpcorner.com/UploadFile/819f33/overview-of-windows-presentation-foundation-wpf-architectu/
+[5] https://pdsa.com/Resources-BlogPosts/20-WPF-Architecture.pdf
+[6] https://r4r.co.in/wpf/01/tutorial/basics/introduction_to_wpf.shtml
+[7] https://learn.microsoft.com/en-us/dotnet/desktop/wpf/overview/?view=netdesktop-8.0
+[8] https://en.wikipedia.org/wiki/Windows_Presentation_Foundation
