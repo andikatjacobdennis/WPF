@@ -1,4 +1,4 @@
-![wpf_architecture](wpf_architecture.png)
+![wpf_architecture](Media\Images\wpf_architecture.png)
 
 ### WPF Managed Layer
 
