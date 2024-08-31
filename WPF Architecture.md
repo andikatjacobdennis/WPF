@@ -62,78 +62,50 @@
 ```puml
 
 @startuml
+' Define the theme and layout
 skinparam linetype ortho
+skinparam packageStyle rectangle
+skinparam node {
+    BackgroundColor #E0E0E0
+    BorderColor #000000
+    FontColor #000000
+    FontSize 12
+    RoundCorner 5
+}
 
+' Define the packages
 package "WPF Managed Layer" {
-    class PresentationFramework {
-        + Controls
-        + Data Binding 
-        + Styles
-        + Animation
-    }
-
-    class PresentationCore {
-        + Visual System
-        + Rendering Instructions
-    }
-
-    class WindowBase {
-        + Window Management
-        + User Interaction
-    }
+    [PresentationFramework] as PF
+    [PresentationCore] as PC
+    [WindowBase] as WB
 }
 
 package "WPF Unmanaged Layer" {
-    class MilCore {
-        + Low-Level Rendering
-        + DirectX Integration
-    }
-    class WindowsCodecs {
-        + Image Decoding
-        + DirectX Integration  
-    }
+    [MilCore] as MC
+    [WindowsCodecs] as WC
 }
 
 package "Core Operating System Elements" {
-    class User32 {
-        + User Interface Management
-        + Event Handling
-    }
-
-    class GDI {
-        + Graphics Device Interface
-        + 2D Graphics Rendering
-    }
-
-    class CLR {
-        + Memory Management
-        + Execution Environment
-    }
-
-    class Direct3D {
-        + 3D Graphics Rendering
-        + Hardware Acceleration
-    }
-
-    class DeviceDrivers {
-        + Hardware Communication
-        + Device Management
-    }
-
-    class GraphicsCard {
-        + Rendering Hardware
-        + GPU Processing
-    }
+    [User32] as U32
+    [GDI] as GDI
+    [CLR] as CLR
+    [Direct3D] as D3D
+    [DeviceDrivers] as DD
+    [GraphicsCard] as GC
 }
 
-PresentationFramework --> PresentationCore : Utilizes
-"WPF Managed Layer" --> "WPF Unmanaged Layer" : Interfaces with
-"WPF Unmanaged Layer" --> Direct3D : Interfaces with
-WindowBase --> CLR : Delivers Rendering Instructions to
-CLR --> User32 : Utilizes
-User32 --> GDI : Utilizes
-GDI --> DeviceDrivers : Interfaces with
-Direct3D --> DeviceDrivers : Interfaces with 
-DeviceDrivers --> GraphicsCard : Communicates with
+' Define relationships with clear labels using straight lines
+PF -down-> PC : Utilizes
+PC -down-> WB : Manages
+"WPF Managed Layer" -down-> "WPF Unmanaged Layer" : Interfaces with
+MC -down-> D3D : Interfaces with
+WB -down-> CLR : Delivers Rendering Instructions to
+CLR -down-> U32 : Utilizes
+U32 -down-> GDI : Utilizes
+GDI -down-> DD : Interfaces with
+D3D -down-> DD : Interfaces with 
+DD -down-> GC : Communicates with
+
 @enduml
+
 ```
