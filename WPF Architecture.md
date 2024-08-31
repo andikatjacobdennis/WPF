@@ -59,6 +59,8 @@
 - **User32** employs **GDI** for certain 2D graphics operations, while WPF predominantly relies on DirectX for high-performance graphics.
 - **Direct3D** interfaces with **Device Drivers** for hardware resource management, while **Device Drivers** communicate with the **Graphics Card** for rendering and GPU processing.
 
+![Alt text](wpf_architecture.png)
+
 ```puml
 
 @startuml
