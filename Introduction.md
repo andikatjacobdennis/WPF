@@ -1,8 +1,8 @@
-### Introduction
+# Introduction
 
 Windows Presentation Foundation (WPF) is a powerful framework developed by Microsoft for building rich, visually-stunning, and highly interactive desktop applications for the Windows operating system. WPF is part of the .NET framework and has been a preferred choice for developers since its introduction with .NET 3.0. It allows for the separation of user interface (UI) from business logic, enabling the creation of applications that are easier to maintain and extend.
 
-### Overview of WPF and MVVM
+## Overview of WPF and MVVM
 
 WPF stands out for its ability to create modern and intuitive user interfaces using XAML (Extensible Application Markup Language). XAML allows developers to define the UI in a declarative manner, making it easier to visualize and design complex UIs. WPF supports advanced features such as data binding, templating, and animation, making it ideal for creating sophisticated user experiences.
 
@@ -14,7 +14,7 @@ Model-View-ViewModel (MVVM) is a design pattern specifically tailored for WPF ap
 
 By adhering to the MVVM pattern, developers can build WPF applications that are not only easy to maintain but also scalable and adaptable to future changes.
 
-### Importance of WPF and MVVM in Modern .NET Applications
+## Importance of WPF and MVVM in Modern .NET Applications
 
 WPF remains an essential technology for developing modern desktop applications in the .NET ecosystem. Its ability to create visually compelling UIs, coupled with the robustness of the MVVM pattern, ensures that applications are both user-friendly and maintainable.
 
@@ -27,6 +27,8 @@ The use of WPF and MVVM in modern .NET applications is crucial for several reaso
 3. **Testability:** With business logic encapsulated in the ViewModel, unit testing becomes easier and more effective, contributing to higher-quality software.
 
 4. **Scalability:** WPF applications built using MVVM can be more easily scaled and extended, making them adaptable to growing business needs.
+
+## WPF Architecture
 
 ![wpf_architecture](Media/Images/wpf_architecture.png)
 
