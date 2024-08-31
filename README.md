@@ -5,6 +5,7 @@
 ### Introduction
 1. Overview of WPF and MVVM
 2. Importance of WPF and MVVM in Modern .NET Applications
+3. WPF Architecture
 
 ### Core Concepts of WPF
 1. **XAML (Extensible Application Markup Language)**
