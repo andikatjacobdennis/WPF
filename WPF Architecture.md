@@ -58,3 +58,83 @@
 - **WindowBase** delivers rendering instructions to the **CLR**, which utilizes **User32** for UI management and event handling.
 - **User32** employs **GDI** for certain 2D graphics operations, while WPF predominantly relies on DirectX for high-performance graphics.
 - **Direct3D** interfaces with **Device Drivers** for hardware resource management, while **Device Drivers** communicate with the **Graphics Card** for rendering and GPU processing.
+
+```puml
+
+@startuml
+package "WPF Managed Layer" {
+    class PresentationFramework {
+        + Controls
+        + Data Binding 
+        + Styles
+        + Animation
+    }
+
+    class PresentationCore {
+        + Visual System
+        + Rendering Instructions
+    }
+
+    class WindowBase {
+        + Window Management
+        + User Interaction
+    }
+}
+
+package "WPF Unmanaged Layer" {
+    class MilCore {
+        + Low-Level Rendering
+        + DirectX Integration
+    }
+    class WindowsCodecs {
+        + Image Decoding
+        + DirectX Integration  
+    }
+}
+
+package "Core Operating System Elements" {
+    class User32 {
+        + User Interface Management
+        + Event Handling
+    }
+
+    class GDI {
+        + Graphics Device Interface
+        + 2D Graphics Rendering
+    }
+
+    class CLR {
+        + Memory Management
+        + Execution Environment
+    }
+
+    class Direct3D {
+        + 3D Graphics Rendering
+        + Hardware Acceleration
+    }
+
+    class DeviceDrivers {
+        + Hardware Communication
+        + Device Management
+    }
+
+    class GraphicsCard {
+        + Rendering Hardware
+        + GPU Processing
+    }
+}
+
+PresentationFramework --> PresentationCore : Utilizes
+PresentationFramework --> WindowBase : Utilizes  
+PresentationCore --> WindowBase : Utilizes
+"WPF Managed Layer" --> "WPF Unmanaged Layer" : Interfaces with
+"WPF Unmanaged Layer" --> Direct3D : Interfaces with
+WindowBase --> CLR : Delivers Rendering Instructions to
+CLR --> User32 : Utilizes
+User32 --> GDI : Utilizes
+GDI --> DeviceDrivers : Interfaces with
+Direct3D --> DeviceDrivers : Interfaces with 
+DeviceDrivers --> GraphicsCard : Communicates with
+@enduml
+
+```
