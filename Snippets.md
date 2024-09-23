@@ -242,8 +242,31 @@
        - **Multi Value Converters**
          - Example: 
            ```csharp
-           public class BoolToVisibilityConverter : IValueConverter { ... }
+            using System;
+            using System.Globalization;
+            using System.Windows.Data;
+            
+            public class CombineValuesConverter : IMultiValueConverter
+            {
+                public object Convert(object[] values, Type targetType, object parameter, CultureInfo culture)
+                {
+                    if (values.Length >= 2 &&
+                        values[0] is string str1 &&
+                        values[1] is string str2)
+                    {
+                        return $"{str1} {str2}"; // Combine the two strings
+                    }
+                    return string.Empty; // Default value
+                }
+            
+                public object[] ConvertBack(object value, Type[] targetTypes, object parameter, CultureInfo culture)
+                {
+                    var parts = value.ToString().Split(' ', 2);
+                    return new object[] { parts[0], parts.Length > 1 ? parts[1] : string.Empty };
+                }
+            }
            ```
+
        - **Using Attached Properties**
          - Example: 
            ```csharp
