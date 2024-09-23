@@ -394,15 +394,17 @@
    - **Dynamic Resource Changes**
      - Example: 
        ```csharp
-       Application.Current.Resources["PrimaryColor"] = new SolidColorBrush(Colors.Red);
-       ```
-   - **Using Background Workers for Asynchronous Operations**
+            var lightTheme = new ResourceDictionary { Source = new Uri("LightTheme.xaml", UriKind.Relative) };
+            Application.Current.Resources.MergedDictionaries.Clear();
+            Application.Current.Resources.MergedDictionaries.Add(lightTheme);
+        ```
+   - **Begin Invoke**
      - Example: 
        ```csharp
-       BackgroundWorker worker = new BackgroundWorker();
-       worker.DoWork += (sender, e) => { /* long-running task */ };
-       worker.RunWorkerCompleted += (sender, e) => { /* update UI */ };
-       worker.RunWorkerAsync();
+            Application.Current.Dispatcher.BeginInvoke(new Action(() =>
+            {
+                StatusTextBlock.Text = "Background work completed!";
+            }));
        ```
 
 6. **Error Handling and Best Practices**
