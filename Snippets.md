@@ -228,20 +228,22 @@
 
        ```
             
-            ```xml
-            <Window x:Class="MyNamespace.MainWindow">
-                <Window.Resources>
-                    <local:BooleanToStringConverter x:Key="BooleanToStringConverter"/>
-                </Window.Resources>
-                
-                <Grid>
-                    <StackPanel>
-                        <TextBlock Text="{Binding IsChecked, ElementName=MyCheckBox, Converter={StaticResource BooleanToStringConverter}}"
-                                   Margin="10"/>
-                    </StackPanel>
-                </Grid>
-            </Window>
-            ```
+        ```xml
+        
+        <Window x:Class="MyNamespace.MainWindow">
+            <Window.Resources>
+                <local:BooleanToStringConverter x:Key="BooleanToStringConverter"/>
+            </Window.Resources>
+            
+            <Grid>
+                <StackPanel>
+                    <TextBlock Text="{Binding IsChecked, ElementName=MyCheckBox, Converter={StaticResource BooleanToStringConverter}}"
+                               Margin="10"/>
+                </StackPanel>
+            </Grid>
+        </Window>
+        
+        ```
        - **Multi Value Converters**
          - Example: 
            ```csharp
