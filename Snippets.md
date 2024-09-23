@@ -53,11 +53,42 @@
    - **Control Templates**
      - Example: 
        ```xaml
-       <ControlTemplate TargetType="Button">
-           <Border Background="{TemplateBinding Background}">
-               <ContentPresenter/>
-           </Border>
-       </ControlTemplate>
+        <Window x:Class="MyNamespace.MainWindow"
+                xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                Title="Custom Button Template" Height="300" Width="400">
+            <Window.Resources>
+                <ControlTemplate x:Key="CustomButtonTemplate" TargetType="Button">
+                    <Border Background="{TemplateBinding Background}" 
+                            BorderBrush="{TemplateBinding BorderBrush}" 
+                            BorderThickness="{TemplateBinding BorderThickness}" 
+                            CornerRadius="5">
+                        <ContentPresenter 
+                            HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}" 
+                            VerticalAlignment="{TemplateBinding VerticalContentAlignment"/>
+                    </Border>
+                </ControlTemplate>
+        
+                <Style TargetType="Button">
+                    <Setter Property="Template" Value="{StaticResource CustomButtonTemplate}"/>
+                    <Setter Property="Background" Value="LightGray"/>
+                    <Setter Property="Foreground" Value="Black"/>
+                    <Setter Property="BorderBrush" Value="DarkGray"/>
+                    <Setter Property="BorderThickness" Value="1"/>
+                    <Setter Property="Padding" Value="10,5"/>
+                    <Setter Property="Margin" Value="10"/>
+                </Style>
+            </Window.Resources>
+        
+            <Grid>
+                <Button Content="Click Me" 
+                        Width="150" 
+                        Height="50" 
+                        HorizontalAlignment="Center" 
+                        VerticalAlignment="Center"/>
+            </Grid>
+        </Window>
+
        ```
    - **Resource Dictionaries for Themes**
      - Example: 
