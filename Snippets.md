@@ -24,14 +24,31 @@
    - **Using Styles and Triggers**
      - Example: 
        ```xaml
-       <Style TargetType="Button">
-           <Setter Property="Background" Value="LightGray"/>
-           <Style.Triggers>
-               <Trigger Property="IsMouseOver" Value="True">
-                   <Setter Property="Background" Value="Blue"/>
-               </Trigger>
-           </Style.Triggers>
-       </Style>
+        <Style TargetType="Button">
+            <Setter Property="BorderBrush" Value="DarkGray"/>
+            <Setter Property="BorderThickness" Value="1"/>
+            <Setter Property="CornerRadius" Value="5"/>
+            <Setter Property="Cursor" Value="Hand"/>
+            
+            <Style.Triggers>
+                <Trigger Property="IsMouseOver" Value="True">
+                    <Setter Property="Background" Value="Blue"/>
+                    <Setter Property="ScaleTransform">
+                        <Setter.Value>
+                            <ScaleTransform ScaleX="1.1" ScaleY="1.1"/>
+                        </Setter.Value>
+                    </Setter>
+                </Trigger>
+                <Trigger Property="IsPressed" Value="True">
+                    <Setter Property="Background" Value="DarkBlue"/>
+                </Trigger>
+                <Trigger Property="IsEnabled" Value="False">
+                    <Setter Property="Background" Value="LightGray"/>
+                    <Setter Property="Opacity" Value="0.5"/>
+                </Trigger>
+            </Style.Triggers>
+        </Style>
+
        ```
    - **Control Templates**
      - Example: 
