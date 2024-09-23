@@ -198,70 +198,62 @@
 4. **Advanced Features**
    - **Single Value Converters**
      - Example: 
-       ```csharp
-       public class BoolToVisibilityConverter : IValueConverter { ... }
-       ```
-
-Sure! Here's the code for a single value converter that converts a boolean to a string and vice versa, along with the necessary components.
-
-### BooleanToStringConverter
-
-    ```csharp
-    using System;
-    using System.Globalization;
-    using System.Windows.Data;
-    
-    public class BooleanToStringConverter : IValueConverter
-    {
-        public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
-        {
-            if (value is bool booleanValue)
-            {
-                return booleanValue ? "Yes" : "No";
-            }
-            return "No"; // Default value
-        }
-    
-        public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
-        {
-            if (value is string stringValue)
-            {
-                return stringValue.Equals("Yes", StringComparison.OrdinalIgnoreCase);
-            }
-            return false; // Default value
-        }
-    }
-    ```
-    
-    ```xml
-    <Window x:Class="MyNamespace.MainWindow">
-        <Window.Resources>
-            <local:BooleanToStringConverter x:Key="BooleanToStringConverter"/>
-        </Window.Resources>
+        ```csharp
+        using System;
+        using System.Globalization;
+        using System.Windows.Data;
         
-        <Grid>
-            <StackPanel>
-                <TextBlock Text="{Binding IsChecked, ElementName=MyCheckBox, Converter={StaticResource BooleanToStringConverter}}"
-                           Margin="10"/>
-            </StackPanel>
-        </Grid>
-    </Window>
-    ```
-   - **Multi Value Converters**
-     - Example: 
-       ```csharp
-       public class BoolToVisibilityConverter : IValueConverter { ... }
-       ```
-   - **Using Attached Properties**
-     - Example: 
-       ```csharp
-       public static readonly DependencyProperty IsMouseOverProperty = ...;
-       ```
-   - **Implementing a Custom Behavior**
-     - Example: 
-       ```csharp
-       public class ClickBehavior : Behavior<Button> { ... }
-       ```
+        public class BooleanToStringConverter : IValueConverter
+        {
+            public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
+            {
+                if (value is bool booleanValue)
+                {
+                    return booleanValue ? "Yes" : "No";
+                }
+                return "No"; // Default value
+            }
+        
+            public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
+            {
+                if (value is string stringValue)
+                {
+                    return stringValue.Equals("Yes", StringComparison.OrdinalIgnoreCase);
+                }
+                return false; // Default value
+            }
+        }
+        ```
+        
+        ```xml
+        <Window x:Class="MyNamespace.MainWindow">
+            <Window.Resources>
+                <local:BooleanToStringConverter x:Key="BooleanToStringConverter"/>
+            </Window.Resources>
+            
+            <Grid>
+                <StackPanel>
+                    <TextBlock Text="{Binding IsChecked, ElementName=MyCheckBox, Converter={StaticResource BooleanToStringConverter}}"
+                               Margin="10"/>
+                </StackPanel>
+            </Grid>
+        </Window>
+        ```
+       - **Multi Value Converters**
+         - Example: 
+           ```csharp
+           public class BoolToVisibilityConverter : IValueConverter { ... }
+           ```
+       - **Using Attached Properties**
+         - Example: 
+           ```csharp
+           public static readonly DependencyProperty IsMouseOverProperty = ...;
+           ```
+       - **Implementing a Custom Behavior**
+         - Example: 
+           ```csharp
+           public class ClickBehavior : Behavior<Button> { ... }
+           ```
 
 5. **Animations and Dynamic UI**
    - **Using Animations**
