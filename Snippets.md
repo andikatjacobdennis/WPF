@@ -379,17 +379,37 @@
    - **Using Animations**
      - Example: 
        ```xaml
-       <Button Name="MyButton" Content="Animate Me">
-           <Button.Triggers>
-               <EventTrigger RoutedEvent="Button.MouseEnter">
-                   <BeginStoryboard>
-                       <Storyboard>
-                           <DoubleAnimation Storyboard.TargetName="MyButton" Storyboard.TargetProperty="Opacity" From="1" To="0.5" Duration="0:0:0.5" AutoReverse="True"/>
-                       </Storyboard>
-                   </BeginStoryboard>
-               </EventTrigger>
-           </Button.Triggers>
-       </Button>
+        <Button Name="MyButton" Content="Animate Me" Width="200" Height="50" Background="LightBlue" Foreground="White" FontSize="16">
+            <Button.Triggers>
+                <EventTrigger RoutedEvent="Button.MouseEnter">
+                    <BeginStoryboard>
+                        <Storyboard>
+                            <!-- Opacity Animation -->
+                            <DoubleAnimation Storyboard.TargetName="MyButton" Storyboard.TargetProperty="Opacity" From="1" To="0.5" Duration="0:0:0.5" AutoReverse="True"/>
+                            
+                            <!-- Scale Animation -->
+                            <DoubleAnimation Storyboard.TargetName="MyButton" Storyboard.TargetProperty="(UIElement.RenderTransform).(ScaleTransform.ScaleX)" From="1" To="1.2" Duration="0:0:0.5" AutoReverse="True"/>
+                            <DoubleAnimation Storyboard.TargetName="MyButton" Storyboard.TargetProperty="(UIElement.RenderTransform).(ScaleTransform.ScaleY)" From="1" To="1.2" Duration="0:0:0.5" AutoReverse="True"/>
+        
+                            <!-- Background Color Animation -->
+                            <ColorAnimation Storyboard.TargetName="MyButton" Storyboard.TargetProperty="(Button.Background).(SolidColorBrush.Color)" From="LightBlue" To="Coral" Duration="0:0:0.5" AutoReverse="True"/>
+                            
+                            <!-- Easing Function for smoother animation -->
+                            <DoubleAnimationUsingKeyFrames Storyboard.TargetName="MyButton" Storyboard.TargetProperty="(UIElement.RenderTransform).(ScaleTransform.ScaleX)">
+                                <EasingDoubleKeyFrame KeyTime="0:0:0.5" Value="1.2" EasingFunction="{StaticResource QuadraticEase}"/>
+                            </DoubleAnimationUsingKeyFrames>
+                            <DoubleAnimationUsingKeyFrames Storyboard.TargetName="MyButton" Storyboard.TargetProperty="(UIElement.RenderTransform).(ScaleTransform.ScaleY)">
+                                <EasingDoubleKeyFrame KeyTime="0:0:0.5" Value="1.2" EasingFunction="{StaticResource QuadraticEase}"/>
+                            </DoubleAnimationUsingKeyFrames>
+                        </Storyboard>
+                    </BeginStoryboard>
+                </EventTrigger>
+            </Button.Triggers>
+            <Button.RenderTransform>
+                <ScaleTransform />
+            </Button.RenderTransform>
+        </Button>
+
        ```
    - **Dynamic Resource Changes**
      - Example: 
