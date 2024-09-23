@@ -197,7 +197,8 @@
 
 4. **Advanced Features**
    - **Single Value Converters**
-     - Example: 
+     - Example:
+       
             ```csharp
             using System;
             using System.Globalization;
