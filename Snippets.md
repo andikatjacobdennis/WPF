@@ -1,9 +1,5 @@
 1. **Basic UI Components**
-   - **Binding Data to UI**
-     - Example: `<TextBox Text="{Binding Name}"/>`
-   - **Handling Events in XAML**
-     - Example: `<Button Content="Click Me" Click="Button_Click"/>`
-   - **Creating a Simple DataGrid**
+    - **Creating a Simple DataGrid**
      - Example: 
        ```xaml
        <DataGrid ItemsSource="{Binding People}">
@@ -18,13 +14,6 @@
        <UserControl x:Class="MyNamespace.MyUserControl">
            <TextBlock Text="{Binding MyProperty}"/>
        </UserControl>
-       ```
-   - **Implementing a Simple Popup**
-     - Example: 
-       ```xaml
-       <Popup IsOpen="{Binding IsPopupOpen}">
-           <TextBlock Text="Hello, World!" Background="White"/>
-       </Popup>
        ```
 
 2. **Styling and Templates**
