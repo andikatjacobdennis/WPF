@@ -275,7 +275,38 @@
        - **Using Attached Properties**
          - Example: 
            ```csharp
-           public static readonly DependencyProperty IsMouseOverProperty = ...;
+
+            using System.Windows;
+            using System.Windows.Controls;
+            
+            public static class ToolTipAttachedProperty
+            {
+                public static readonly DependencyProperty ToolTipTextProperty =
+                    DependencyProperty.RegisterAttached(
+                        "ToolTipText",
+                        typeof(string),
+                        typeof(ToolTipAttachedProperty),
+                        new PropertyMetadata(string.Empty, OnToolTipTextChanged));
+            
+                public static string GetToolTipText(DependencyObject obj)
+                {
+                    return (string)obj.GetValue(ToolTipTextProperty);
+                }
+            
+                public static void SetToolTipText(DependencyObject obj, string value)
+                {
+                    obj.SetValue(ToolTipTextProperty, value);
+                }
+            
+                private static void OnToolTipTextChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
+                {
+                    if (d is Control control)
+                    {
+                        control.ToolTip = e.NewValue?.ToString();
+                    }
+                }
+            }
+
            ```
        - **Implementing a Custom Behavior**
          - Example: 
