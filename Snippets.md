@@ -1,6 +1,6 @@
 1. **Basic UI Components**
     - **Creating a Simple DataGrid**
-     - Example: 
+     - Example:
        ```xaml
        <DataGrid ItemsSource="{Binding People}">
            <DataGrid.Columns>
