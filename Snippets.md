@@ -196,17 +196,12 @@
        ```
 
 4. **Advanced Features**
-   - **Command Implementation**
+   - **Single Value Converters**
      - Example: 
        ```csharp
-       public class RelayCommand : ICommand { ... }
+       public class BoolToVisibilityConverter : IValueConverter { ... }
        ```
-   - **Event Aggregator Pattern**
-     - Example: 
-       ```csharp
-       public class EventAggregator { ... }
-       ```
-   - **Value Converters**
+   - **Multi Value Converters**
      - Example: 
        ```csharp
        public class BoolToVisibilityConverter : IValueConverter { ... }
@@ -238,11 +233,6 @@
            </Button.Triggers>
        </Button>
        ```
-   - **Creating a Simple Animation**
-     - Example: 
-       ```xaml
-       <DoubleAnimation Storyboard.TargetName="MyButton" Storyboard.TargetProperty="Width" To="150" Duration="0:0:0.5" AutoReverse="True"/>
-       ```
    - **Dynamic Resource Changes**
      - Example: 
        ```csharp
@@ -256,41 +246,8 @@
        worker.RunWorkerCompleted += (sender, e) => { /* update UI */ };
        worker.RunWorkerAsync();
        ```
-   - **Implementing a TabControl with Dynamic Content**
-     - Example: 
-       ```xaml
-       <TabControl>
-           <TabItem Header="Tab 1">
-               <TextBlock Text="Content for Tab 1"/>
-           </TabItem>
-           <TabItem Header="Tab 2">
-               <ContentControl Content="{Binding Tab2Content}"/>
-           </TabItem>
-       </TabControl>
-       ```
 
-6. **Data Presentation and Management**
-   - **Using the DataGrid with Paging**
-     - Example: 
-       ```xaml
-       <DataGrid ItemsSource="{Binding PaginatedPeople}" AutoGenerateColumns="False">
-           <DataGrid.Columns>
-               <DataGridTextColumn Header="Name" Binding="{Binding Name}"/>
-           </DataGrid.Columns>
-       </DataGrid>
-       ```
-   - **Using the Visual Tree Helper**
-     - Example: 
-       ```csharp
-       var button = VisualTreeHelper.GetChild(parent, index) as Button;
-       ```
-   - **Creating and Using a Simple Custom Control**
-     - Example: 
-       ```csharp
-       public class MyCustomControl : Control { ... }
-       ```
-
-7. **Error Handling and Best Practices**
+6. **Error Handling and Best Practices**
    - **Handling Global Exceptions**
      - Example: 
        ```csharp
