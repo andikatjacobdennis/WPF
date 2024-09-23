@@ -171,6 +171,30 @@
         }
        ```
 
+       ```csharp
+        using System.Windows.Input;
+        
+        public class MyViewModel
+        {        
+            public ICommand ButtonCommand { get; }
+        
+            public MyViewModel()
+            {
+                ButtonCommand = new RelayCommand(ExecuteButtonCommand);
+            }
+        
+            private void ExecuteButtonCommand(object parameter)
+            {
+                if (parameter is string message)
+                {
+                    // Use the parameter (e.g., show a message box)
+                    System.Windows.MessageBox.Show(message);
+                }
+            }
+        }
+
+       ```
+
 4. **Advanced Features**
    - **Command Implementation**
      - Example: 
