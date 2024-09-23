@@ -309,11 +309,72 @@
 
            ```
        - **Implementing a Custom Behavior**
-         - Example: 
-           ```csharp
-           public class ClickBehavior : Behavior<Button> { ... }
-           ```
+         - Example: ClickColorChangeBehavior
 
+        In WPF, custom behaviors allow you to add functionality to existing controls in a reusable way without modifying their code. You can implement behaviors using the `Behavior<T>` class from the                     `System.Windows.Interactivity` namespace (or `Microsoft.Xaml.Behaviors` in newer projects).
+
+        ```csharp
+        using System.Windows;
+        using System.Windows.Controls;
+        using System.Windows.Media;
+        using System.Windows.Input;
+        using System.Windows.Interactivity;
+        
+        public class ClickColorChangeBehavior : Behavior<UIElement>
+        {
+            public Color ClickColor
+            {
+                get { return (Color)GetValue(ClickColorProperty); }
+                set { SetValue(ClickColorProperty, value); }
+            }
+        
+            public static readonly DependencyProperty ClickColorProperty =
+                DependencyProperty.Register("ClickColor", typeof(Color), typeof(ClickColorChangeBehavior), new PropertyMetadata(Colors.Transparent));
+        
+            protected override void OnAttached()
+            {
+                base.OnAttached();
+                AssociatedObject.MouseLeftButtonDown += OnMouseLeftButtonDown;
+            }
+        
+            protected override void OnDetaching()
+            {
+                base.OnDetaching();
+                AssociatedObject.MouseLeftButtonDown -= OnMouseLeftButtonDown;
+            }
+        
+            private void OnMouseLeftButtonDown(object sender, MouseButtonEventArgs e)
+            {
+                if (AssociatedObject is Control control)
+                {
+                    control.Background = new SolidColorBrush(ClickColor);
+                }
+            }
+        }
+        ```
+        
+        ```xml
+        <Window x:Class="MyNamespace.MainWindow"
+                xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"
+                xmlns:local="clr-namespace:MyNamespace"
+                Title="Custom Behavior Example" Height="300" Width="400">
+            <StackPanel Margin="10">
+                <Button Content="Click Me" Width="100" Height="30">
+                    <i:Interaction.Behaviors>
+                        <local:ClickColorChangeBehavior ClickColor="LightCoral"/>
+                    </i:Interaction.Behaviors>
+                </Button>
+                <TextBox Width="200" Height="30" Margin="0,10,0,0">
+                    <i:Interaction.Behaviors>
+                        <local:ClickColorChangeBehavior ClickColor="LightBlue"/>
+                    </i:Interaction.Behaviors>
+                </TextBox>
+            </StackPanel>
+        </Window>
+        ```
+        
 5. **Animations and Dynamic UI**
    - **Using Animations**
      - Example: 
