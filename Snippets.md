@@ -76,7 +76,18 @@
    - **Resource Dictionaries for Themes**
      - Example: 
        ```xaml
-       <ResourceDictionary Source="Themes/LightTheme.xaml"/>
+        <!-- MainResourceDictionary.xaml -->
+        <ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                            xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="Themes/LightTheme.xaml"/>
+                <!-- You can add more dictionaries here if needed -->
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
+
+        <Window.Resources>
+            <ResourceDictionary Source="MainResourceDictionary.xaml"/>
+        </Window.Resources>
        ```
    - **Triggers with Conditions**
      - Example: 
