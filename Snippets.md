@@ -46,8 +46,23 @@
                     <Setter Property="Background" Value="LightGray"/>
                     <Setter Property="Opacity" Value="0.5"/>
                 </Trigger>
-            </Style.Triggers>
-        </Style>
+
+                <!-- DataTrigger: Change opacity when the button is disabled -->
+                <DataTrigger Binding="{Binding IsEnabled}" Value="False">
+                    <Setter Property="Opacity" Value="0.5"/>
+                </DataTrigger>
+        
+                <!-- MultiDataTrigger: Change background based on multiple conditions -->
+                <MultiDataTrigger>
+                    <MultiDataTrigger.Conditions>
+                        <Condition Binding="{Binding IsMouseOver}" Value="True"/>
+                        <Condition Binding="{Binding IsEnabled}" Value="True"/>
+                    </MultiDataTrigger.Conditions>
+                    <Setter Property="Background" Value="LightGreen"/>
+                    <Setter Property="Foreground" Value="Black"/>
+                </MultiDataTrigger>
+                    </Style.Triggers>
+                </Style>
 
        ```
    - **Control Templates**
@@ -88,17 +103,6 @@
         <Window.Resources>
             <ResourceDictionary Source="MainResourceDictionary.xaml"/>
         </Window.Resources>
-       ```
-   - **Triggers with Conditions**
-     - Example: 
-       ```xaml
-       <Style TargetType="Button">
-           <Style.Triggers>
-               <DataTrigger Binding="{Binding IsEnabled}" Value="False">
-                   <Setter Property="Opacity" Value="0.5"/>
-               </DataTrigger>
-           </Style.Triggers>
-       </Style>
        ```
 
 3. **Data Binding and MVVM**
