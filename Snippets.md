@@ -1,19 +1,23 @@
 1. **Basic UI Components**
-    - **Creating a Simple DataGrid**
+    - **Creating a DataGrid**
      - Example:
        ```xaml
-       <DataGrid ItemsSource="{Binding People}">
-           <DataGrid.Columns>
-               <DataGridTextColumn Header="Name" Binding="{Binding Name}"/>
-           </DataGrid.Columns>
-       </DataGrid>
-       ```
-   - **Creating a Custom User Control**
-     - Example: 
-       ```xaml
-       <UserControl x:Class="MyNamespace.MyUserControl">
-           <TextBlock Text="{Binding MyProperty}"/>
-       </UserControl>
+        <DataGrid ItemsSource="{Binding People}" 
+                  AutoGenerateColumns="False" 
+                  IsReadOnly="False" 
+                  CanUserAddRows="True" 
+                  CanUserDeleteRows="True" 
+                  SelectionMode="Single" 
+                  AlternatingRowBackground="LightGray" 
+                  RowBackground="White" 
+                  RowHeaderWidth="30" 
+                  ColumnHeaderHeight="40" 
+                  GridLinesVisibility="Both" 
+                  Sorting="True">
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="Name" Binding="{Binding Name}" Width="*"/>
+            </DataGrid.Columns>
+        </DataGrid>
        ```
 
 2. **Styling and Templates**
