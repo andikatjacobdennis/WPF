@@ -179,43 +179,7 @@ public class ProductViewModel : INotifyPropertyChanged
         </Window.Resources>
        ```
 
-3. **Data Binding and MVVM**
-   - **MVVM Pattern Setup**
-     - Example: 
-       ```csharp
-        using System.ComponentModel;
-        
-        public class MyViewModel : INotifyPropertyChanged
-        {
-            private string _buttonText;
-        
-            public string ButtonText
-            {
-                get => _buttonText;
-                set
-                {
-                    if (_buttonText != value)
-                    {
-                        _buttonText = value;
-                        OnPropertyChanged(nameof(ButtonText));
-                    }
-                }
-            }
-        
-            public MyViewModel()
-            {
-                ButtonText = "Click Me"; // Default text
-            }
-        
-            public event PropertyChangedEventHandler PropertyChanged;
-        
-            protected virtual void OnPropertyChanged(string propertyName)
-            {
-                PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
-            }
-        }
-       ```
-  
+3. **Data Binding and MVVM** 
    - **Using Commands with Parameters**
      - Example: 
        ```csharp
