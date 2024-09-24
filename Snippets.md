@@ -96,49 +96,49 @@ public class ProductViewModel : INotifyPropertyChanged
    - **Using Styles and Triggers**
      - Example:
     
-       ```xaml
-        <Style TargetType="Button">
-            <Setter Property="BorderBrush" Value="DarkGray"/>
-            <Setter Property="BorderThickness" Value="1"/>
-            <Setter Property="CornerRadius" Value="5"/>
-            <Setter Property="Cursor" Value="Hand"/>
-            
-            <Style.Triggers>
-                <Trigger Property="IsMouseOver" Value="True">
-                    <Setter Property="Background" Value="Blue"/>
-                    <Setter Property="ScaleTransform">
-                        <Setter.Value>
-                            <ScaleTransform ScaleX="1.1" ScaleY="1.1"/>
-                        </Setter.Value>
-                    </Setter>
-                </Trigger>
-                <Trigger Property="IsPressed" Value="True">
-                    <Setter Property="Background" Value="DarkBlue"/>
-                </Trigger>
-                <Trigger Property="IsEnabled" Value="False">
-                    <Setter Property="Background" Value="LightGray"/>
-                    <Setter Property="Opacity" Value="0.5"/>
-                </Trigger>
+```xaml
+<Style TargetType="Button">
+    <Setter Property="BorderBrush" Value="DarkGray"/>
+    <Setter Property="BorderThickness" Value="1"/>
+    <Setter Property="CornerRadius" Value="5"/>
+    <Setter Property="Cursor" Value="Hand"/>
+    
+    <Style.Triggers>
+        <Trigger Property="IsMouseOver" Value="True">
+            <Setter Property="Background" Value="Blue"/>
+            <Setter Property="ScaleTransform">
+                <Setter.Value>
+                    <ScaleTransform ScaleX="1.1" ScaleY="1.1"/>
+                </Setter.Value>
+            </Setter>
+        </Trigger>
+        <Trigger Property="IsPressed" Value="True">
+            <Setter Property="Background" Value="DarkBlue"/>
+        </Trigger>
+        <Trigger Property="IsEnabled" Value="False">
+            <Setter Property="Background" Value="LightGray"/>
+            <Setter Property="Opacity" Value="0.5"/>
+        </Trigger>
 
-                <!-- DataTrigger: Change opacity when the button is disabled -->
-                <DataTrigger Binding="{Binding IsEnabled}" Value="False">
-                    <Setter Property="Opacity" Value="0.5"/>
-                </DataTrigger>
-        
-                <!-- MultiDataTrigger: Change background based on multiple conditions -->
-                <MultiDataTrigger>
-                    <MultiDataTrigger.Conditions>
-                        <Condition Binding="{Binding IsMouseOver}" Value="True"/>
-                        <Condition Binding="{Binding IsEnabled}" Value="True"/>
-                    </MultiDataTrigger.Conditions>
-                    <Setter Property="Background" Value="LightGreen"/>
-                    <Setter Property="Foreground" Value="Black"/>
-                </MultiDataTrigger>
-                    </Style.Triggers>
-           </Style>
+        <!-- DataTrigger: Change opacity when the button is disabled -->
+        <DataTrigger Binding="{Binding IsEnabled}" Value="False">
+            <Setter Property="Opacity" Value="0.5"/>
+        </DataTrigger>
 
-       ```
-       
+        <!-- MultiDataTrigger: Change background based on multiple conditions -->
+        <MultiDataTrigger>
+            <MultiDataTrigger.Conditions>
+                <Condition Binding="{Binding IsMouseOver}" Value="True"/>
+                <Condition Binding="{Binding IsEnabled}" Value="True"/>
+            </MultiDataTrigger.Conditions>
+            <Setter Property="Background" Value="LightGreen"/>
+            <Setter Property="Foreground" Value="Black"/>
+        </MultiDataTrigger>
+            </Style.Triggers>
+   </Style>
+
+```
+
    - **Control Templates**
      - Example: 
        ```xaml
