@@ -22,7 +22,8 @@
 
 2. **Styling and Templates**
    - **Using Styles and Triggers**
-     - Example: 
+     - Example:
+    
        ```xaml
         <Style TargetType="Button">
             <Setter Property="BorderBrush" Value="DarkGray"/>
@@ -65,6 +66,7 @@
            </Style>
 
            ```
+       
    - **Control Templates**
      - Example: 
        ```xaml
