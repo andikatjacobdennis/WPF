@@ -1,33 +1,97 @@
 1. **Basic UI Components**
     - **Creating a DataGrid**
-     - Example:
-       ```xaml
-        <DataGrid ItemsSource="{Binding People, 
-                               Mode=TwoWay, 
-                               UpdateSourceTrigger=PropertyChanged, 
-                               ValidatesOnDataErrors=True, 
-                               ValidatesOnNotifyDataErrors=True, 
-                               NotifyOnSourceUpdated=True, 
-                               NotifyOnTargetUpdated=True, 
-                               NotifyOnValidationError=True}"}" 
-                  AutoGenerateColumns="False" 
-                  IsReadOnly="False" 
-                  CanUserAddRows="True" 
-                  CanUserDeleteRows="True" 
-                  SelectionMode="Single" 
-                  AlternatingRowBackground="LightGray" 
-                  RowBackground="White" 
-                  RowHeaderWidth="30" 
-                  ColumnHeaderHeight="40" 
-                  GridLinesVisibility="Both" 
-                  Sorting="True">
+        ```csharp
+        public class Product
+        {
+            public int Id { get; set; }
+            public string Name { get; set; }
+            public decimal Price { get; set; }
+        }
+        ```
+        
+        ```csharp
+        using System.Collections.ObjectModel;
+        using System.ComponentModel;
+        using System.Windows.Data;
+        
+        public class ProductViewModel : INotifyPropertyChanged
+        {
+            private ICollectionView _productCollectionView;
+            private string _filterText;
+            
+            public ObservableCollection<Product> Products { get; set; }
+        
+            public ICollectionView ProductCollectionView
+            {
+                get { return _productCollectionView; }
+                set
+                {
+                    _productCollectionView = value;
+                    OnPropertyChanged(nameof(ProductCollectionView));
+                }
+            }
+        
+            public string FilterText
+            {
+                get { return _filterText; }
+                set
+                {
+                    _filterText = value;
+                    OnPropertyChanged(nameof(FilterText));
+                    ProductCollectionView.Refresh();
+                }
+            }
+        
+            public ProductViewModel()
+            {
+                // Initialize the Products collection
+                Products = new ObservableCollection<Product>
+                {
+                    new Product { Id = 1, Name = "Product A", Price = 12.50M },
+                    new Product { Id = 2, Name = "Product B", Price = 25.00M },
+                    new Product { Id = 3, Name = "Product C", Price = 30.00M }
+                };
+        
+                // Initialize CollectionView and add a filter
+                ProductCollectionView = CollectionViewSource.GetDefaultView(Products);
+                ProductCollectionView.Filter = FilterProducts;
+            }
+        
+            private bool FilterProducts(object obj)
+            {
+                if (obj is Product product)
+                {
+                    return string.IsNullOrEmpty(FilterText) || 
+                           product.Name.Contains(FilterText, StringComparison.OrdinalIgnoreCase);
+                }
+                return false;
+            }
+        
+            public event PropertyChangedEventHandler PropertyChanged;
+            protected virtual void OnPropertyChanged(string propertyName)
+            {
+                PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
+            }
+        }
+        ```
+        
+        ```xml
+        <!-- Filter TextBox -->
+        <TextBox Width="200" Margin="10"
+                 Text="{Binding FilterText, UpdateSourceTrigger=PropertyChanged}" 
+                 PlaceholderText="Filter by Name"/>
+        
+        <!-- DataGrid -->
+        <DataGrid ItemsSource="{Binding ProductCollectionView}" AutoGenerateColumns="False" 
+                  Margin="10" CanUserAddRows="False" IsReadOnly="True">
             <DataGrid.Columns>
-                <DataGridTextColumn Header="Name" Binding="{Binding Name}" Width="*"/>
+                <DataGridTextColumn Header="ID" Binding="{Binding Id}" Width="50"/>
+                <DataGridTextColumn Header="Name" Binding="{Binding Name}" Width="200"/>
+                <DataGridTextColumn Header="Price" Binding="{Binding Price, StringFormat=C}" Width="100"/>
             </DataGrid.Columns>
         </DataGrid>
+        ```
 
-       ```
-       
 2. **Styling and Templates**
    - **Using Styles and Triggers**
      - Example:
