@@ -62,9 +62,9 @@
                     <Setter Property="Foreground" Value="Black"/>
                 </MultiDataTrigger>
                     </Style.Triggers>
-                </Style>
+           </Style>
 
-       ```
+           ```
    - **Control Templates**
      - Example: 
        ```xaml
