@@ -2,7 +2,14 @@
     - **Creating a DataGrid**
      - Example:
        ```xaml
-        <DataGrid ItemsSource="{Binding People}" 
+        <DataGrid ItemsSource="{Binding People, 
+                               Mode=TwoWay, 
+                               UpdateSourceTrigger=PropertyChanged, 
+                               ValidatesOnDataErrors=True, 
+                               ValidatesOnNotifyDataErrors=True, 
+                               NotifyOnSourceUpdated=True, 
+                               NotifyOnTargetUpdated=True, 
+                               NotifyOnValidationError=True}"}" 
                   AutoGenerateColumns="False" 
                   IsReadOnly="False" 
                   CanUserAddRows="True" 
