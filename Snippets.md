@@ -18,8 +18,9 @@
                 <DataGridTextColumn Header="Name" Binding="{Binding Name}" Width="*"/>
             </DataGrid.Columns>
         </DataGrid>
-       ```
 
+       ```
+       
 2. **Styling and Templates**
    - **Using Styles and Triggers**
      - Example:
