@@ -99,9 +99,6 @@ public class ProductViewModel : INotifyPropertyChanged
 ```xaml
 <Style x:key="ButtonStyle" TargetType="Button">
     <Setter Property="BorderBrush" Value="DarkGray"/>
-    <Setter Property="BorderThickness" Value="1"/>
-    <Setter Property="CornerRadius" Value="5"/>
-    <Setter Property="Cursor" Value="Hand"/>
     
     <Style.Triggers>
         <Trigger Property="IsMouseOver" Value="True">
@@ -117,7 +114,6 @@ public class ProductViewModel : INotifyPropertyChanged
         </Trigger>
         <Trigger Property="IsEnabled" Value="False">
             <Setter Property="Background" Value="LightGray"/>
-            <Setter Property="Opacity" Value="0.5"/>
         </Trigger>
 
         <!-- DataTrigger: Change opacity when the button is disabled -->
@@ -132,7 +128,6 @@ public class ProductViewModel : INotifyPropertyChanged
                 <Condition Binding="{Binding IsEnabled}" Value="True"/>
             </MultiDataTrigger.Conditions>
             <Setter Property="Background" Value="LightGreen"/>
-            <Setter Property="Foreground" Value="Black"/>
         </MultiDataTrigger>
             </Style.Triggers>
    </Style>
