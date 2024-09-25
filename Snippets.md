@@ -153,23 +153,15 @@ public class ProductViewModel : INotifyPropertyChanged
      - Example: 
        ```xaml
        
-        <Window.Resources>
-            <ControlTemplate x:Key="CustomButtonTemplate" TargetType="Button">
-                <Border Background="{TemplateBinding Background}" 
-                        BorderBrush="{TemplateBinding BorderBrush}" 
-                        BorderThickness="{TemplateBinding BorderThickness}" 
-                        CornerRadius="5">
-                    <ContentPresenter 
-                        HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}" 
-                        VerticalAlignment="{TemplateBinding VerticalContentAlignment"/>
-                </Border>
-            </ControlTemplate>
-    
-            <Style TargetType="Button">
-                <Setter Property="Template" Value="{StaticResource CustomButtonTemplate}"/>
-                <Setter Property="Background" Value="LightGray"/>
-            </Style>
-        </Window.Resources>
+        <ControlTemplate x:Key="CustomButtonTemplate" TargetType="Button">
+            <Border >
+                <ContentPresenter HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}" />
+            </Border>
+        </ControlTemplate>
+
+        <Style TargetType="Button">
+            <Setter Property="Template" Value="{StaticResource CustomButtonTemplate}"/>
+        </Style>
 
        ```
    - **Resource Dictionaries for Themes**
