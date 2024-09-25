@@ -97,7 +97,7 @@ public class ProductViewModel : INotifyPropertyChanged
      - Example:
     
 ```xaml
-<Style TargetType="Button">
+<Style x:key="ButtonStyle" TargetType="Button">
     <Setter Property="BorderBrush" Value="DarkGray"/>
     <Setter Property="BorderThickness" Value="1"/>
     <Setter Property="CornerRadius" Value="5"/>
