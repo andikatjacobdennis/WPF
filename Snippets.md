@@ -101,20 +101,25 @@ public class ProductViewModel : INotifyPropertyChanged
     <Setter Property="BorderBrush" Value="DarkGray"/>
     
     <Style.Triggers>
+
+        <!-- Property Trigger -->
         <Trigger Property="IsMouseOver" Value="True">
-            <Setter Property="Background" Value="Blue"/>
             <Setter Property="ScaleTransform">
                 <Setter.Value>
                     <ScaleTransform ScaleX="1.1" ScaleY="1.1"/>
                 </Setter.Value>
             </Setter>
         </Trigger>
-        <Trigger Property="IsPressed" Value="True">
-            <Setter Property="Background" Value="DarkBlue"/>
-        </Trigger>
-        <Trigger Property="IsEnabled" Value="False">
-            <Setter Property="Background" Value="LightGray"/>
-        </Trigger>
+
+        <!-- MultiTrigger -->
+        <MultiTrigger>
+            <MultiTrigger.Conditions>
+                <Condition Property="IsFocused" Value="True" />
+                <Condition Property="Validation.HasError" Value="True" />
+            </MultiTrigger.Conditions>
+            <Setter Property="BorderBrush" Value="Red" />
+            <Setter Property="BorderThickness" Value="2" />
+        </MultiTrigger>
 
         <!-- DataTrigger: Change opacity when the button is disabled -->
         <DataTrigger Binding="{Binding IsEnabled}" Value="False">
@@ -129,8 +134,18 @@ public class ProductViewModel : INotifyPropertyChanged
             </MultiDataTrigger.Conditions>
             <Setter Property="Background" Value="LightGreen"/>
         </MultiDataTrigger>
-            </Style.Triggers>
-   </Style>
+
+        <EventTrigger RoutedEvent="MouseEnter">
+            <BeginStoryboard>
+                <Storyboard>
+                    <ColorAnimation Storyboard.TargetProperty="(Button.Background).(SolidColorBrush.Color)"
+                                    To="Yellow" Duration="0:0:1" />
+                </Storyboard>
+            </BeginStoryboard>
+        </EventTrigger>
+
+    </Style.Triggers>
+</Style>
 
 ```
 
